@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 import HomeScreen from './HomeScreen'
