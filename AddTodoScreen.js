@@ -9,27 +9,45 @@ class AddTodoScreen extends Component {
         const {dispatch} = this.props
         const {text_title} = this.state
         dispatch(actionCreators.add(text_title))
+        this.props.navigation.goBack()
     }
 
     render() {
+        const { goBack } = this.props.navigation;
         return(
-            <View> 
-                <Text style={styles.header}>Add To-do</Text>
-                <TextInput 
-                    style={styles.inputTitle}
-                    placeholder='Title'
-                    onChangeText={(text_title) => { this.setState({text_title}) }}
-                />
-                <TextInput 
-                    style={styles.inputDescription}
-                    placeholder='Description'
-                    onChangeText={(text_description) => { this.setState({text_description}) }}
-                />
-                <Button
-                    title='Save'
-                    color='firebrick'
-                    onPress={this.onAddTodo}
-                />
+
+            <View>
+                <View>
+                    <Text style={styles.header}>Add To-do</Text>
+                    <View>
+                        <TextInput
+                            style={styles.inputTitle}
+                            placeholder='Title'
+                            onChangeText={(text_title) => { this.setState({text_title}) }}
+                        />
+                        <TextInput
+                            style={styles.inputDescription}
+                            placeholder='Description'
+                            onChangeText={(text_description) => { this.setState({text_description}) }}
+                        />
+                    </View>
+                </View>
+                <View>
+                    <View>
+                        <Button
+                            style={styles.button}
+                            title='Save'
+                            onPress={this.onAddTodo}
+                        />
+                    </View>
+                    <View>
+                        <Button
+                            style={styles.button}
+                            title='Cancel'
+                            onPress={() => { goBack()}}
+                        />
+                    </View>
+                </View>
             </View>
         )
     }

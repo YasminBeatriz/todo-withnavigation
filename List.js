@@ -13,7 +13,6 @@ class List extends Component {
 
     render() {
         const {list} = this.props
-        console.log("List: ", list)
         return(
             <View>
                 {list.map(this.renderItem)}
