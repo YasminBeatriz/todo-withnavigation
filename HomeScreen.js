@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
 
-import List from './List'
+import List from './List';
 
 class HomeScreen extends Component {
     render() {
-        const {todos} = this.props
+        const {items} = this.props
         return(
             <View>
                 <View style={{backgroundColor: '#CFD5DB', padding: 10 }} >
@@ -16,11 +17,17 @@ class HomeScreen extends Component {
                     onPress={() => this.props.navigation.navigate('AddTodo')}
                 />
                 <List
-                    list={todos}
+                    list={items}
                 />
             </View>
         )
     }
 }
 
-export default HomeScreen
+const mapStateToProps = (state, ownProps) => {
+    return {
+        items: state.todos
+    }
+}
+
+export default connect(mapStateToProps)(HomeScreen)

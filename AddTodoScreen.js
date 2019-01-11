@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+import { actionCreators } from './todoRedux'
 
 class AddTodoScreen extends Component {
+
+    onAddTodo = () => {
+        const {dispatch} = this.props
+        const {text_title} = this.state
+        dispatch(actionCreators.add(text_title))
+    }
+
     render() {
         return(
             <View> 
@@ -9,10 +18,17 @@ class AddTodoScreen extends Component {
                 <TextInput 
                     style={styles.inputTitle}
                     placeholder='Title'
+                    onChangeText={(text_title) => { this.setState({text_title}) }}
                 />
                 <TextInput 
                     style={styles.inputDescription}
                     placeholder='Description'
+                    onChangeText={(text_description) => { this.setState({text_description}) }}
+                />
+                <Button
+                    title='Save'
+                    color='firebrick'
+                    onPress={this.onAddTodo}
                 />
             </View>
         )
@@ -38,4 +54,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddTodoScreen
+const mapStateToProps = (state, ownProps) => {
+    return {}
+}
+
+export default connect(mapStateToProps)(AddTodoScreen)
