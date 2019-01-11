@@ -5,17 +5,24 @@ import { actionCreators } from './todoRedux'
 
 class AddTodoScreen extends Component {
 
-    onAddTodo = () => {
-        const {dispatch} = this.props
-        const {text_title} = this.state
-        dispatch(actionCreators.add(text_title))
-        this.props.navigation.goBack()
+    onSave = () => {
+        const {text_title, text_description} = this.state
+        const { navigation, onAddTodo } = this.props
+        onAddTodo(text_title, text_description)
+        navigation.goBack()
+    }
+
+    updateTextInputTitle = (text_title) => {
+        this.setState({text_title})
+    }
+
+    updateTextInputDescription = (text_description) => {
+        this.setState({text_description})
     }
 
     render() {
-        const { goBack } = this.props.navigation;
+        const { goBack } = this.props.navigation
         return(
-
             <View>
                 <View>
                     <Text style={styles.header}>Add To-do</Text>
@@ -23,30 +30,26 @@ class AddTodoScreen extends Component {
                         <TextInput
                             style={styles.inputTitle}
                             placeholder='Title'
-                            onChangeText={(text_title) => { this.setState({text_title}) }}
+                            onChangeText={this.updateTextInputTitle}
                         />
                         <TextInput
                             style={styles.inputDescription}
                             placeholder='Description'
-                            onChangeText={(text_description) => { this.setState({text_description}) }}
+                            onChangeText={this.updateTextInputDescription}
                         />
                     </View>
                 </View>
                 <View>
-                    <View>
-                        <Button
-                            style={styles.button}
-                            title='Save'
-                            onPress={this.onAddTodo}
-                        />
-                    </View>
-                    <View>
-                        <Button
-                            style={styles.button}
-                            title='Cancel'
-                            onPress={() => { goBack()}}
-                        />
-                    </View>
+                    <Button
+                        style={styles.button}
+                        title='Save'
+                        onPress={this.onSave}
+                    />
+                    <Button
+                        style={styles.button}
+                        title='Cancel'
+                        onPress={goBack}
+                    />
                 </View>
             </View>
         )
@@ -72,8 +75,17 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = (state, ownProps) => {
-    return {}
+const mapStateToProps = (state) => {
+    return {
+    }
 }
 
-export default connect(mapStateToProps)(AddTodoScreen)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAddTodo: (text_title, text_description) => {
+            dispatch(actionCreators.add({title: text_title, msg: text_description}))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodoScreen)

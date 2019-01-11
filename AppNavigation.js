@@ -9,15 +9,4 @@ const AppNavigator = createStackNavigator (
 	  AddTodo: { screen: AddTodoScreen }}
 )
 
-const AppContainer = createAppContainer(AppNavigator)
-
-class AppNavigation extends Component {
-	
-	render() {
-		return (
-			<AppContainer />
-		)
-	}
-}
-
-export default AppNavigation;
+export default createAppContainer(AppNavigator)

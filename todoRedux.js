@@ -1,12 +1,15 @@
-const initialState = { todos: [ "Go to the Supermarket", "Learn React Native" ]};
+const initialState = { todos: [
+        { title: "Go to the Supermarket", msg: "Comprar Leite, Café e Banana"},
+        { title: "Learn React Native", msg: "Fazer o tutorial com React Navigation, Redux e Redux Saga"}
+    ]};
 
 export const types = {
     ADD: 'ADD'
 }
 
 export const actionCreators = {
-    add: (item) => {
-        return { type: types.ADD, payload: item }
+    add: (object) => {
+        return { type: types.ADD, payload: object }
     }
 }
 

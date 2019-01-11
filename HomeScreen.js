@@ -24,7 +24,7 @@ class HomeScreen extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         items: state.todos
     }

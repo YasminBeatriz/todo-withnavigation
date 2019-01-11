@@ -3,10 +3,11 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 
 class List extends Component {
 
-    renderItem = (text) => {
+    renderItem = ({title: textTitle, msg: textDescription}, i) => {
         return(
-                <TouchableOpacity style={styles.list}>
-                    <Text>{text}</Text>
+                <TouchableOpacity key={i} style={styles.list}>
+                    <Text style={styles.text_title}>{textTitle}</Text>
+                    <Text style={styles.text_description}>{textDescription}</Text>
                 </TouchableOpacity>
         )
     }
@@ -25,6 +26,14 @@ const styles = StyleSheet.create({
     list: {
         backgroundColor: '#D3F0E2',
         padding: 10
+    },
+
+    text_title: {
+        color: '#C71585'
+    },
+
+    text_description: {
+        color: '#F08080'
     }
 })
 
