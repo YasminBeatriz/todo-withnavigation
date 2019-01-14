@@ -14,6 +14,7 @@ class List extends Component {
 
     render() {
         const {list} = this.props
+        console.log("props", this.props)
         return(
             <View>
                 {list.map(this.renderItem)}
