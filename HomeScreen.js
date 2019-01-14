@@ -13,7 +13,7 @@ class HomeScreen extends Component {
         )
     }
 
-    keyExtractor = (_, index) => index.toString()
+    keyExtractor = (items, _) => items.id.toString()
 
     render() {
         const {items} = this.props

@@ -1,7 +1,9 @@
 const initialState = { todos: [
-        { title: "Go to the Supermarket", msg: "Comprar Leite, Café e Banana"},
-        { title: "Learn React Native", msg: "Fazer o tutorial com React Navigation, Redux e Redux Saga"}
+        { id: 1, title: "Go to the Supermarket", msg: "Comprar Leite, Café e Banana"},
+        { id: 2, title: "Learn React Native", msg: "Fazer o tutorial com React Navigation, Redux e Redux Saga"}
     ]};
+
+let previousId = initialState.todos.length
 
 export const types = {
     ADD: 'ADD'
@@ -9,6 +11,8 @@ export const types = {
 
 export const actionCreators = {
     add: (object) => {
+        object.id = previousId + 1
+        previousId = previousId + 1
         return { type: types.ADD, payload: object }
     }
 }
